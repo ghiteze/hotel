@@ -1,0 +1,42 @@
+<h2 class="title center-align"><span>Reservation Complete!</span></h2>
+<p class="center-align" style="width:80%;color:#999;margin:0 auto 30px auto;">Please check information exactly and if you find any mistakes please contact us via the contact form of website.</p>
+<div class="box">
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <span>First name:</span><span class="right"><%= customer.first_name %></span><br/>
+      <span>Email:</span><span class="right"><%= customer.email %></span><br/>
+      <span>City:</span><span class="right"><%= customer.city %></span><br/>
+    </div>
+    <div class="col s12 m6 l6">
+      <span>Last name:</span><span class="right"><%= customer.last_name %></span><br/>
+      <span>Phone number:</span><span class="right"><%= customer.phone_number %></span><br/>
+      <span>Address:</span><span class="right"><%= customer.address %></span><br/>
+    </div>
+    <div class="col s12 m12 l12">
+      <span>Special Requirements:</span>
+      <p><%= customer.special_requirements %></p>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="row">
+    <div class="col s12 m12 l4">
+      <span>Check in:</span><span class="right"><%= check_in %></span><br/>
+      <span>Check out:</span><span class="right"><%= check_out %></span><br/>
+      <span>Adult:</span><span class="right"><%= adult %></span><br/>
+      <span>Children:</span><span class="right"><%= children %></span><br/>
+    </div>
+    <div class="col s12 m12 l4">
+      <%= accommodation %>
+    </div>
+    <div class="col s12 m12 l4 center-align"><span><%= "$#{total_price}" %></span></div>
+  </div>
+</div>
+<form action="/booking/confirmation" method="POST">
+  <div class="row">
+    <div class="col s12 center-align">
+      <button class="btn">Submit</button>
+    </div>
+  </div>
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="e9NDAbvD8wv41sl6/e+dPp47UvuF5kYJQJiW5GpGYi11AQm8QZX6HgHUSaI0QhS17F3u0AqGTASjLL1KcETsig==">
+</form>

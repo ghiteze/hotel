@@ -1,0 +1,108 @@
+<div class="spa-content">
+  <div class="container">
+    <h1 class="big-title"><%= @spa.name %></h1>
+    <p>3 Hours: <%= number_to_currency(@spa.price) %></p>
+    <a class="btn modal-trigger" href="#spa-booking-modal">Book now</a>
+    <%= @spa.content.html_safe %>
+  </div>
+</div>
+<div id="spa-booking-modal" class="modal service-booking" style="box-shadow: none !important">
+  <div class="row">
+    <form action="/spa-and-wellness/booking" method="POST">
+      <div class="col s12">
+        <div class="row">
+          <h2 class="title center-align"><span>Choose your package</span></h2>
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons right">expand_more</i>
+            <select class="spa none" id="spa" name="spa_booking[package]">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input class="price" type="text" value="<%= number_to_currency(@spa.price) %>" disabled/>
+            <input type="hidden" value="<%= @spa.name %>" name="spa_booking[name]"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12">
+        <div class="row">
+          <h2 class="title center-align"><span>Your information</span></h2>
+          <% if current_user.present? %>
+            <div class="col s12">
+              <input type="checkbox" class="filled-in" id="filled-in-box">
+              <label for="filled-in-box">Use information from your account</label>
+            </div>
+          <% end %>
+          <div class="input-field col s12 m6 l6">
+            <input type="text" placeholder="First name" name="spa_booking[first_name]"/>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input type="text" placeholder="Last name" name="spa_booking[last_name]"/>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input type="email" placeholder="Email" name="spa_booking[email]"/>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input type="text" placeholder="Phone number" name="spa_booking[phone_number]"/>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input type="text" placeholder="City" name="spa_booking[city]"/>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <input type="text" placeholder="Address" name="spa_booking[address]"/>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 center-align">
+        <button class="btn">Submit</button>
+      </div>
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="authenticity_token" value="VDP/RBW1+TQINW76Md4sIrKvzOu5AvJK3vDWyCinv09S6oyUKvzFIMlghlMi36ztNMAj8EWCEP+V0LWUb+4T8A==">
+    </form>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    var price = '<%= @spa.price %>';
+    $('.service-booking .lists li').on('click', function() {
+      var value = $(this).data('value');
+      $('.price').val('$' + value * price);
+    })
+
+    $('#filled-in-box').on('change', function() {
+      if ($(this).prop('checked')) {
+        set_info();
+      }
+    });
+
+    var get_info = function() {
+      return {
+        first_name  : '<%= current_user.first_name if current_user.present? %>',
+        last_name   : '<%= current_user.last_name if current_user.present? %>',
+        email       : '<%= current_user.email if current_user.present? %>',
+        phone_number: '<%= current_user.phone_number if current_user.present? %>',
+        city        : '<%= current_user.city if current_user.present? %>',
+        address     : '<%= current_user.address if current_user.present? %>'
+      };
+    };
+
+    var set_info = function() {
+      var info = get_info();
+      $('[name="spa_booking[first_name]"]').val(info.first_name);
+      $('[name="spa_booking[last_name]"]').val(info.last_name);
+      $('[name="spa_booking[email]"]').val(info.email);
+      $('[name="spa_booking[phone_number]"]').val(info.phone_number);
+      $('[name="spa_booking[city]"]').val(info.city);
+      $('[name="spa_booking[address]"]').val(info.address);
+    };
+
+  });
+</script>

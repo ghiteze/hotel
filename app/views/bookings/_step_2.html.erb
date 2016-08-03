@@ -1,0 +1,22 @@
+<form action="booking/confirm_room" method="POST">
+  <div class="row">
+    <% @accommodations.each do |accommodation| %>
+      <div class="col s12 m6 l4">
+        <div class="image">
+          <%= image_tag accommodation.accommodation_images.first.image.url, :class =>'responsive-img' %>
+          <input type="checkbox" name="accommodation[slug][]" value="<%= accommodation.slug %>" id="<%= "a_#{accommodation.id}" %>">
+          <label for="<%= "a_#{accommodation.id}"  %>"></label>
+        </div>
+        <div class="text">
+          <h2><%= accommodation.name %></h2>
+          <%= link_to t('main.detail'), accommodation_path(accommodation.slug), :target => "_blank", :class => "btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="center-align">
+    <button class="btn">Confirm the room</button>
+  </div>
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="e9NDAbvD8wv41sl6/e+dPp47UvuF5kYJQJiW5GpGYi11AQm8QZX6HgHUSaI0QhS17F3u0AqGTASjLL1KcETsig==">
+</form>

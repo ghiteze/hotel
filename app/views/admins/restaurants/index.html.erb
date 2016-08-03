@@ -1,0 +1,30 @@
+<div class="web-location">
+  <h1><%= @web_location %></h1>
+  <%= link_to "Add new", new_admins_restaurant_path, :class => "waves-effect waves-light btn right" %>
+</div>
+<div class="main-content">
+  <div id="admin-restaurant">
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= image_tag restaurant.restaurant_images.first.image.url(:medium), :width => "100" %></td>
+          <td><%= link_to restaurant.name, restaurant_path(restaurant.slug), :target => "_blank" %></td>
+          <td>
+            <%= link_to "View", restaurant_path(restaurant.slug), :target => "_blank" %>
+            <%= link_to "Edit", edit_admins_restaurant_path(restaurant) %>
+            <%= link_to "Delete", admins_restaurant_path(restaurant), method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

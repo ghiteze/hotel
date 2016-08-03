@@ -1,0 +1,67 @@
+<form action="/booking/check_availability" method="POST" class="row">
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <h2 class="title center-align"><span>Check-in</span></h2>
+      <div class="check-in">
+        <input type="hidden" name="booking[check-in]">
+      </div>
+    </div>
+    <div class="col s12 m6 l6">
+      <h2 class="title center-align"><span>Check-out</span></h2>
+      <div class="check-out">
+        <input type="hidden" name="booking[check-out]">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2 class="title center-align"><span>Other details</span></h2>
+    <div class="col s12 m6 l6">
+      <div class="select-wrap">
+        <i class="material-icons right">expand_more</i>
+        <%= select_tag "booking[adult]", options_for_select([1, 2, 3, 4, 5, 6, 7, 8], 1), :include_blank => "Adult", :class => "adult none" %>
+      </div>
+    </div>
+    <div class="col s12 m6 l6">
+      <div class="select-wrap">
+        <i class="material-icons right">expand_more</i>
+        <%= select_tag "booking[children]", options_for_select([1, 2, 3, 4, 5, 6, 7, 8], 1), :include_blank => "Children", :class => "children none" %>
+      </div>
+    </div>
+    <div class="center-align"><button class="btn">Check Availability</button></div>
+  </div>
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="e9NDAbvD8wv41sl6/e+dPp47UvuF5kYJQJiW5GpGYi11AQm8QZX6HgHUSaI0QhS17F3u0AqGTASjLL1KcETsig==">
+</form>
+
+<script>
+  $(document).ready(function() {
+    var check_in  = '<%= Time.at(booking.check_in).strftime("%m/%d/%Y") if booking.check_in.present? %>';
+    var check_out = '<%= Time.at(booking.check_out).strftime("%m/%d/%Y") if booking.check_out.present? %>';
+    var adult = '<%= booking.adult.present? ? booking.adult : "Adult" %>';
+    var children = '<%= booking.children.present? ? booking.children : "Children" %>';
+    $('.check-in').datepicker({ defaultDate: check_in });
+    $('.check-out').datepicker({ defaultDate: check_out });
+
+    $("[name='booking[adult]']").val(adult).prev().text(adult);
+    $("[name='booking[children]']").val(children).prev().text(children);
+
+    $('#step_1 button').on('click', function() {
+      var cin  = $('.check-in');
+      var cout = $('.check-out');
+      var cin_active  = cin.find('.ui-state-active');
+      var cout_active = cout.find('.ui-state-active');
+
+      var cin_day   = cin_active .text();
+      var cin_month = cin_active .parent('td').data('month') + 1;
+      var cin_year  = cin_active .parent('td').data('year');
+
+      var cout_day   = cout_active .text();
+      var cout_month = cout_active .parent('td').data('month') + 1;
+      var cout_year  = cout_active .parent('td').data('year');
+
+      cin.find('input[type=hidden]').val(cin_day + '-' + cin_month + '-' + cin_year);
+      cout.find('input[type=hidden]').val(cout_day + '-' + cout_month + '-' + cout_year);
+    });
+  });
+</script>

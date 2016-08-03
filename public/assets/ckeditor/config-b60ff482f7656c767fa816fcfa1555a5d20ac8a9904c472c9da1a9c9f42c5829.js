@@ -1,0 +1,1 @@
+CKEDITOR.editorConfig=function(e){e.toolbar="mini",e.toolbar_mini=[["Bold","Italic","Underline","Strike","-","Subscript","Superscript"],["NumberedList","BulletedList","-","Outdent","Indent"],["JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock"],["Link","Unlink"],["Styles","Format","Font","FontSize"],["TextColor","BGColor","Image","Source"]]};

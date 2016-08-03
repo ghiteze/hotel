@@ -1,0 +1,31 @@
+<div class="web-location">
+   <h1><%= @web_location %></h1>
+  <%= link_to new_admins_news_path, :class => "waves-effect waves-light btn right teal" do %>
+    <i class="material-icons left">add</i> Add new
+  <% end %>
+</div>
+<div class="main-content">
+  <div id="admin-introduction">
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @news.each do |new| %>
+        <tr>
+          <td><%= image_tag new.image.url(:thumb) %></td>
+          <td><%= link_to new.name, new_path(new.slug), :target => "_blank" %></td>
+          <td>
+            <%= link_to "View", new_path(new.slug), :target => "_blank" %>
+            <%= link_to "Edit", edit_admins_news_path(new) %>
+            <%= link_to "Delete", admins_news_path(new), method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>

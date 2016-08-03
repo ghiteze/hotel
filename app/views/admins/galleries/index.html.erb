@@ -1,0 +1,54 @@
+<div class="web-location">
+  <h1><%= @web_location %></h1>
+  <%= form_for [:admins, @gallery], :html => {:id => 'new_gallery_image', :class => 'right', :multipart => true} do |f| %>
+    <div class="file-field">
+      <div class="btn">
+        <i class="material-icons left">cloud_upload</i>
+        <span>Upload</span>
+        <%= file_field_tag 'images[]', :multiple => true , :id => 'file_upload' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="main-content">
+  <div class="admin-gallery-page">
+    <div class="row">
+      <% @galleries.each do |gallery| %>
+        <div class="col s12 m6 l3" style="padding: 0 1px;">
+          <%= link_to admins_gallery_path(gallery), method: :delete, data: {confirm: 'Are you sure?'} do %>
+            <i class="material-icons">close</i>
+          <% end %>
+          <%= image_tag gallery.image.url, :class => 'responsive-img' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(e) {
+    $('#new_gallery_image').on('submit', function(e) {
+      e.preventDefault();
+      var $data = new FormData(this);
+
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: $data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log("Insert success");
+        },
+        error: function (data) {
+          console.log("Error");
+        }
+      });
+    });
+
+    $('#file_upload').on('change', function () {
+      $('#new_gallery_image').submit();
+    });
+  });
+</script>

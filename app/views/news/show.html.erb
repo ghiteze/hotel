@@ -1,0 +1,7 @@
+<div class="new-content">
+  <div class="container ">
+    <h1 class="big-title"><%= @new.name %></h1>
+    <p><%= @new.created_at.strftime("%d/%m/%Y") %></p>
+    <%= @new.content.html_safe %>
+  </div>
+</div>

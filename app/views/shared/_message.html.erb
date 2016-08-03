@@ -1,0 +1,7 @@
+<% if flash.present? %>
+  <div class="message">
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :span, msg.kind_of?(Array) ? msg.join('<br/>').html_safe : msg, class: name %>
+    <% end -%>
+  </div>
+<% end %>

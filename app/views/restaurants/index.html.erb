@@ -1,0 +1,20 @@
+<div id="restaurant-page" class="service-page">
+  <div class="container">
+    <h1 class="big-title">Restaurant</h1>
+    <p>The Food and Beverage (F&B) facilities and services are the key to the success of the Hotel and have to support the marketing. The F&B Division interrelates to all the other divisions of the Hotel hence the logistic has to be well thought. F&B consists of F&B service and preparation. F&B service is headed by the F&B Manager and the food preparation and stewarding is headed by the Executive Chef - Mr. Abri Ali. The Executive Chef shares with the Human Resources Department the responsibility to operate the staff cafeteria.</p>
+    <p>To be successful we have to have a good understanding of the market and know the expectations of the Hotel’s potential guests.</p><br/>
+    <div class="row">
+      <% @restaurants.each do |restaurant| %>
+        <div class="col s6 m6 l4 hover-effect" style="margin-bottom: 0.75em;">
+          <div class="image">
+            <%= image_tag restaurant.restaurant_images.first.image.url, :class =>'responsive-img' %>
+          </div>
+          <div class="text">
+            <h2><%= link_to restaurant.name.upcase, restaurant_path(restaurant.slug) %></h2>
+            <%= link_to "",restaurant_path(restaurant.slug), :class => 'read-more' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

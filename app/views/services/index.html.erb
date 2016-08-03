@@ -1,0 +1,52 @@
+<div id="service-page">
+  <div class="container">
+    <h1 class="big-title"><%= t('service.title') %></h1>
+    <div class="row">
+      <div class="col s6 m6 l3">
+        <div class="image">
+          <%= link_to image_tag("room.jpg", :class => 'responsive-img'), accommodations_path %>
+        </div>
+        <div class="text">
+          <h2><%= link_to "Accommodation", accommodations_path %></h2>
+          <p>These are designed with the Indochine opulence and inspired by the subdued elegance of a Noble House ...</p>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="image">
+          <%= link_to image_tag("restaurant.jpg", :class => 'responsive-img'), restaurants_path %>
+        </div>
+        <div class="text">
+          <h2><%= link_to "Restaurant", restaurants_path %></h2>
+          <p>The Food and Beverage (F&B) facilities and services are the key to the success of the Hotel and have to support the ...</p>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="image">
+          <%= link_to image_tag("spa.png", :class => 'responsive-img'), spas_path %>
+        </div>
+        <div class="text">
+          <h2><%= link_to "Spa & Wellness", spas_path %></h2>
+          <p>Bhuvana Spa assists you to enjoy a range of treatments inspired by nature to nurture the mind, body and spirit ...</p>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="image">
+          <%= link_to image_tag("gym.jpg", :class => 'responsive-img'), gyms_path %>
+        </div>
+        <div class="text">
+          <h2><%= link_to "Gym & Fitness", gyms_path %></h2>
+          <p>The whole Ground floor of the hotel is dedicated to relaxation and stylish recreation. Besides our bar ‘Les Bains’ ...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('.col.s6.m6.l3').addClass('hidden').viewportChecker({
+    classToAdd: 'visible animated fadeInDown',
+    offset: 150
+  });
+});
+</script>

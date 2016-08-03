@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hotel</title>
+  <%= stylesheet_link_tag    'admins/application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body id="admin-layout" <%= "class=admin-login" if controller_name == "sessions" %>>
+<div id="wrapper">
+
+<!--
+=============== HEADER ===============-->
+<%= render 'admins/shared/header' %>
+
+<!--
+=============== MAIN ============== -->
+<section id="main">
+<% if current_admin.present? %>
+  <div class="left-content left hide-on-med-and-down">
+    <%= render 'admins/shared/sidebar' %>
+  </div>
+  <div class="right-content right">
+    <%= yield %>
+  </div>
+<% else %>
+  <%= yield %>
+<% end %>
+</section>
+
+<!--
+=============== FOOTER =============== -->
+<%= render 'admins/shared/footer' %>
+
+</div>
+<%= render 'shared/message' %>
+</body>
+</html>

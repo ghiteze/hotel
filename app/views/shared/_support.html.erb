@@ -1,0 +1,31 @@
+<div class="support">
+  <div class="menu-bar">
+    <i class="material-icons right">add</i>
+  </div>
+  <div class="content">
+    <ul>
+      <li class="right">xxxxxxxxxxxxxxxxxxxxxxx</li>
+      <li class="left">xxxxxxxxxxxxxxxxxxxxxxx</li>
+      <li class="right">xxxxxxxxxxxxxxxxxxxxxxx</li>
+      <li class="left">xxxxxxxxxxxxxxxxxxxxxxx</li>
+      <li class="right">xxxxxxxxxxxxxxxxxxxxxxx</li>
+      <li class="left">xxxxxxxxxxxxxxxxxxxxxxx</li>
+    </ul>
+    <form>
+      <input type="text" placeholder="Your name?">
+      <textarea></textarea>
+      <button>Send</button>
+    </form>
+  </div>
+</div>
+<script>
+  (function($) {
+    $('.menu-bar').on('click', function() {
+      var icon = $(this).find('.material-icons');
+      icon.text(
+        icon.text() == 'add' ? 'remove': 'add'
+      );
+      $('.content').toggle();
+    })
+  })(jQuery);
+</script>

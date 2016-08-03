@@ -1,0 +1,18 @@
+<div class="web-location">
+  <h1><%= @web_location %></h1>
+  <% if @introduction.nil? %>
+    <a class="waves-effect waves-light btn modal-trigger right" href="#modal1"><i class="material-icons left">add</i>New</a>
+  <% else %>
+    <a class="waves-effect waves-light btn modal-trigger teal right" href="#modal1"><i class="material-icons left">replay</i> Update</a>
+  <% end %>
+</div>
+<div class="main-content">
+  <div id="admin-introduction">
+    <% if @introduction.nil? %>
+      <p><i>No content</i></p>
+    <% else %>
+      <%= @introduction.content.html_safe %>
+    <% end %>
+    <%= render 'admins/introductions/form', :introduction => @introduction ||= Introduction.new %>
+  </div>
+</div>

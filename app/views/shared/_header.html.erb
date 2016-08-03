@@ -1,0 +1,174 @@
+<header id="header" role="banner">
+  <div class="container">
+    <div class="header">
+      <div class="row">
+        <div class="col s4">
+          <form class="language left hide-on-med-and-down">
+            <i class="material-icons right">expand_more</i>
+            <select class="lang none" name="language" id="lang">
+              <option value="en">English</option>
+              <option value="vi">Vietnam</option>
+            </select>
+          </form>
+        </div>
+        <div class="col s4" style="height: 1px;">
+          <div class="logo center">
+            <%= link_to image_tag("logo.png"), root_path %>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="user-control right hide-on-med-and-down">
+            <% if current_user.present? %>
+              <span><%= link_to current_user.email, users_root_path %>|<%= link_to "Logout", destroy_user_session_path %></span>
+            <% else %>
+              <a class="btn modal-trigger" href="#login-modal"><i class="material-icons left">vpn_key</i> <%= t('header.user.login') %></a>
+              <a class="btn modal-trigger" href="#register-modal"><i class="material-icons left">person</i> <%= t('header.user.register') %></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <nav class="menu">
+        <div class="nav-wrapper">
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="side-nav" id="mobile-demo">
+            <li>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about-us.html">About us</a></li>
+                <li><a href="/rewards.html">Rewards</a></li>
+                <li><a href="/booking.html">Booking</a></li>
+                <li><a href="/news.html">News</a></li>
+                <li><a href="/gallery.html">Gallery</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/contact-us.html">Contact us</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+
+                <% if current_user.present? %>
+                  <li><%= link_to current_user.email, users_root_path %></li>
+                  <li><%= link_to "Logout", destroy_user_session_path %></li>
+                <% else %>
+                  <li><a class="modal-trigger" href="#login-modal"><%= t('header.user.login') %></a></li>
+                  <li><a class="modal-trigger" href="#register-modal"><%= t('header.user.register') %></a></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="container">
+    <nav class="nav">
+      <ul class="row">
+        <div class="col s5">
+          <div class="right">
+            <li><%= link_to t('header.nav.home'),     root_path %></li>
+            <li><%= link_to t('header.nav.about_us'), abouts_path %></li>
+            <li><%= link_to t('header.nav.reward'),  rewards_path %></li>
+            <li><%= link_to t('header.nav.booking'),  bookings_path %></li>
+          </div>
+        </div>
+        <div class="col s2">&nbsp;</div>
+        <div class="col s5">
+          <div class="left">
+            <li><%= link_to t('header.nav.new'),       news_path %></li>
+            <li><%= link_to t('header.nav.gallery'),    galleries_path %></li>
+            <li><%= link_to t('header.nav.service'),   services_path %></li>
+            <li><%= link_to t('header.nav.contact_us'), contacts_path %></li>
+          </div>
+        </div>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+(function($) {
+  $.fn.select = function() {
+    return this.each(function() {
+      var $this   = $(this);
+      var $parent = $this.parent();
+
+      $this.before('<div class="default-text"></div>')
+           .before('<input class="default-value" type="hidden" value="">')
+           .before('<ul class="lists none"></ul>')
+           .remove();
+
+      var $opt   = $this.find('option');
+      var $dft   = $parent.find('.default-text');
+      var $dfv   = $parent.find('.default-value');
+      var $llist = $parent.find('.lists');
+
+      $dfv.attr('name', $this.attr('name'));
+
+      $opt.each(function(i) {
+        var $me    = $(this);
+        var $first = $me.is(":first-child");
+        var $text  = $me.text();
+        var $value = $me.val();
+
+        if ($first) {
+          $dft.text($text);
+          $dfv.val($value);
+        }
+        $llist.append('<li data-value="' + $value + '">' + $text + '</li>');
+      });
+
+      var $slist  = $llist.find('li');
+      var $expand = $parent.find('i');
+
+      $parent.on('click', function() {
+        $llist.toggleClass('none');
+      });
+
+      $dft.on('click', function() {
+        $expand.text(
+          $expand.text() == 'expand_more' ? 'expand_less' : 'expand_more'
+        );
+      })
+
+      $(document).on('click', function(e) {
+        if (!$(e.target).closest($parent).length) {
+          $expand.text('expand_more');
+          $llist.addClass('none');
+        }
+      });
+
+      $slist.on('click', function() {
+        var $text  = $(this).text();
+        var $value = $(this).data('value');
+        $dft.text($text);
+        $dfv.val($value);
+        $expand.text('expand_more');
+      });
+    });
+  };
+}(jQuery));
+
+$(document).ready(function() {
+  $('.lang').select();
+  $('.adult').select();
+  $('.children').select();
+  $('.gym').select();
+  $('.spa').select();
+
+  $('.language .lists>li').on('click', function() {
+    var data = {
+      lang: $(this).data('value')
+    };
+
+    $.ajax({
+     url: '/language',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        location.reload();
+      }
+    });
+
+  });
+  
+});
+</script>

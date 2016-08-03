@@ -1,0 +1,19 @@
+<div id="new-page">
+  <div class="container">
+    <h1 class="big-title"><%= t('new.title') %></h1>
+    <div class="row">
+      <% @news.each do |new| %>
+        <div class="col s12 m6 l6">
+          <div class="image">
+            <%= link_to image_tag(new.image.url(:medium)), new_path(new.slug) %>
+          </div>
+          <div class="text">
+            <h2><%= link_to new.name, new_path(new.slug) %></h2>
+            <p><i class="material-icons left">access_time</i><i><%= new.created_at.strftime("%d/%m/%Y") %></i></p>
+            <p><%= new.summary %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

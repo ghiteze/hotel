@@ -1,0 +1,334 @@
+@import 'global';
+
+$color4: #009688;
+$header_height: 55px;
+$sidebar-width: 18%;
+$sidebar_color: #383e48;
+
+@include placeholder-color(#777);
+
+/* Scroll style */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #383e48 + 120; }
+::-webkit-scrollbar-thumb { background: #383e48; }
+::-webkit-scrollbar-thumb:window-inactive { }
+
+#admin-layout {
+  background-color: #ddd;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p { margin: 0; }
+
+  a {
+    color: #3949ab;
+    font-size: 14px;
+    &:hover { text-decoration: underline; }
+    &.btn { color: #fff; }
+    &.btn:hover { text-decoration: none; }
+  }
+
+  @include input-style($color4);
+
+  input[type="checkbox"].filled-in:not(:checked) + label:after { border-color: #999; }
+  input[type="checkbox"].filled-in:checked + label:after {
+    border-color: $color4;
+    background-color: $color4;
+  }
+
+
+
+
+  /**************** HEADER ***************/
+
+  #header {
+    height: $header_height;
+    background-color: $color4;
+
+    .logo {
+      width: $sidebar-width;
+      height: $header_height;
+      background-color: $color4 - 10;
+      color: #fff;
+      font-size: 27px;
+      line-height: $header_height;
+      padding-left: 10px;
+    }
+
+    .button-collapse {
+      .material-icons {
+        color: #fff;
+        font-size: 35px;
+        margin: 10px 10px 10px 0;
+      }
+    }
+  }
+
+
+
+  /**************** MAIN ***************/
+  #main {
+
+    .left-content {
+      width: $sidebar-width;
+      background-color: $sidebar_color;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 999;
+
+      h1 {
+        height: $header_height;
+        line-height: $header_height;
+        text-align: center;
+        background-color: $color4 - 10;
+        color: #fff;
+        font-size: 27px;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 50px;
+        color: #fff;
+        font-size: 14px;
+        line-height: 50px;
+        text-decoration: none;
+        padding: 0 20px;
+        @include transition(background-color, .3s);
+
+        &.active,
+        &:hover { background-color: $sidebar_color - 11.0038909914; }
+
+        .material-icons {
+          padding-right: 5px;
+          line-height: 1.9;
+        }
+      }
+      .page {
+        display: none;
+        li>a { padding-left: 40px; }
+      }
+    }
+
+    .right-content {
+      width: 100% - $sidebar-width;
+      padding: 10px;
+
+      .web-location,
+      .main-content {
+        background-color: #fff;
+        padding: 10px;
+      }
+
+      .web-location {
+        margin-bottom: 10px;
+        h1 {
+          display: inline-block;
+          font-size: 23px;
+          padding: 10px 0;
+        }
+        .btn {
+          margin-top: 4px;
+        }
+      }
+
+      form {
+        #image_preview { display: inline-block; }
+        .input-field {
+          .image {
+            overflow: hidden;
+            display: inline-block;
+            width: 200px;
+            height: 120px;
+            position: relative;
+
+            .remove {
+              position: absolute;
+              top: 0;
+              right: 0;
+              z-index: 10;
+              display: inline-block;
+              opacity: 0;
+              .material-icons {
+                color: red;
+              }
+            }
+
+            &:hover {
+              .remove { opacity: 1 }
+            }
+
+            &.add {
+              position: relative;
+              input { display: none; }
+              label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                width: 200px;
+                height: 120px;
+                border: 3px dashed #ccc;
+                cursor: pointer;
+              }
+              .material-icons {
+                font-size: 35px;
+                margin-left: 85px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+  /*----- Introduction -----*/
+  #admin-introduction {
+
+    .modal {
+      overflow-y: initial;
+
+      .modal-content { padding: 0px; }
+
+      .modal-footer {
+        height: auto;
+        padding: 10px 0;
+        .modal-close { margin: 0 10px; }
+      }
+    }
+  }
+
+
+  /*----- Gallery page -----*/
+  .admin-gallery-page {
+    .col {
+      position: relative;
+      a {
+        display: inline-block;
+        opacity: 0;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 999;
+        line-height: 1;
+        i {
+          color: red;
+          font-size: 30px;
+        }
+      }
+      &:hover {
+        a { opacity: 1; }
+      }
+    }
+  }
+
+
+  /*----- Gallery -----*/
+  .file-field {
+    .btn,
+    input[type=file] {
+      height: 36px;
+      line-height: 36px;
+    }
+    input[type=file] { cursor: pointer; }
+  }
+
+
+  /*----- Login -----*/
+  &.admin-login {
+    background-color: #ccc;
+
+    .login-form {
+      width: 85%;
+      max-width: 450px;
+      background-color: #fff;
+      border-radius: 4px;
+      margin: 10% auto;
+      padding: 15px;
+      @include box-sizing();
+
+      .input-field {
+        input[type=email],
+        input[type=password] {
+          padding-left: 10px;
+          @include box-sizing();
+        }
+
+        input[type="checkbox"] + label { margin-left: -10px; }
+        button {
+          width: 100%;
+          height: 45px;
+          background-color: $color4;
+        }
+        &:last-child {
+          padding: 10px 0;
+        }
+      }
+    }
+  }
+  .drag-target { display: none; }
+
+
+  #ui-datepicker-div {
+    display: none;
+    background-color: #fff;
+    box-shadow: 0 0 5px 3px #aaa;
+    padding: 20px;
+
+    .ui-datepicker-prev {
+      float: left;
+    }
+    .ui-datepicker-next {
+      float: right;
+    }
+    .ui-datepicker-title {
+      clear: both;
+    }
+
+    td {
+      padding: 10px;
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+    a {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 992px) {
+  #header {
+    padding: 0 10px;
+    .logo {
+      background-color: inherit !important;
+      padding-left: 0 !important;
+    }
+  }
+  #main {
+    .right-content {
+      float: none;
+      width: 100% !important;
+      .admin-spa,
+      .admin-gym {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+

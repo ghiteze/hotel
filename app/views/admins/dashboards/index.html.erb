@@ -1,0 +1,78 @@
+<div class="web-location">
+  <h1><%= @web_location %></h1>
+</div>
+
+<div class="main-content">
+  <div class="filter">
+    <form>
+      <div class="row">
+        <div class="col s6 m6 l4 input-field">
+          <label>From</label><input type="text" class="datepicker filter_by" name="filter_by[date_from]">
+        </div>
+        <div class="col s6 m6 l4 input-field">
+          <label>To</label><input type="text" class="datepicker filter_by" name="filter_by[date_to]">
+        </div>
+        <div class="col s6 m6 l4 input-field">
+          <input type="text" class="filter_by" name="filter_by[price]" id="price"/>
+          <label for="price">Price</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Total price</th>
+        <th>Date</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody id="transaction">
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+$(document).ready(function() {
+
+  $('select').material_select();
+
+  $( ".datepicker" ).datepicker({
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    dateFormat: 'dd-mm-yy'
+  });
+
+  getData('');
+
+  $('.filter_by').on('change', function() {
+    var html = '';
+    $('.filter_by').each(function(i, obj) {
+      var $this = $(this);
+      var value = $this.val();
+      var name  = $(this).attr('name');
+      html += (i == 0 ? '?' : '&') + name + '=' + value;
+    });
+
+    getData(html);
+
+  });
+
+  function getData(html) {
+    $.ajax({
+      url: 'http://localhost:3000/admins/transactions' + html,
+      type: 'GET',
+      dataType: 'text',
+      success: function(data) {
+        $('#transaction').html(data);
+      }
+    });
+  }
+
+});
+
+</script>

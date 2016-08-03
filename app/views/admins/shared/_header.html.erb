@@ -1,0 +1,33 @@
+<% if current_admin.present? %>
+<header id="header">
+  <a href="#" data-activates="mobile-demo" class="button-collapse left hide-on-large-only">
+    <i class="material-icons">menu</i>
+  </a>
+  <div class="logo left">Indochine</div>
+  <ul class="side-nav" id="mobile-demo">
+    <li><a href="#">Sass</a></li>
+    <li><a href="#">Components</a></li>
+    <li><a href="#">Javascript</a></li>
+    <li><a href="#">Mobile</a></li>
+  </ul>
+  <div class="control right hide-on-med-and-down">Control</div>
+</header>
+<% else %>
+<!-- Don't show -->
+<% end %>
+
+
+<script>
+  $(document).ready(function() {
+    $('.button-collapse').on('click', function() {
+      $('#admin-layout').animate({
+        'margin-left': '300px'
+      }, 300);
+    });
+    $(document).on('click', '#sidenav-overlay, li', function() {
+      $('#admin-layout').animate({
+        'margin-left': '0'
+      }, 200);
+    });
+  });
+</script>

@@ -1,0 +1,29 @@
+<h1>Indochine</h1>
+<ul>
+  <li><%= link_active admins_root_path, 'Dashboard', :ctrl => 'dashboards', :icon => 'dashboard' %></li>
+  <li><a href="#" class="page-dropdown"><i class="material-icons left">description</i> Pages</a>
+    <ul class="page">
+      <li><%= link_active admins_introductions_path, 'Introduction', :ctrl => 'introductions',    :icon => 'home' %></li>
+      <li><%= link_active admins_abouts_path, 'About', :ctrl => 'abouts',    :icon => 'home' %></li>
+      <li><%= link_active admins_news_index_path, 'News', :ctrl => 'news',    :icon => 'home' %></li>
+      <li><%= link_active admins_rewards_path, 'Reward', :ctrl => 'rewards',    :icon => 'beenhere
+' %></li>
+      <li><%= link_active admins_accommodations_path, 'Accommodation', :ctrl => 'accommodations', :icon => 'home' %></li>
+      <li><%= link_active admins_restaurants_path, 'Restaurant', :ctrl => 'restaurants', :icon => 'local_dining
+' %></li>
+      <li><%= link_active admins_spas_path, 'Spa & Wellness', :ctrl => 'spas', :icon => 'local_florist
+' %></li>
+      <li><%= link_active admins_gyms_path, 'Gym & Fitness', :ctrl => 'gyms', :icon => 'directions_run' %></li>
+    </ul>
+  </li>
+  <li><%= link_active admins_galleries_path, 'Galleries', :ctrl => 'galleries',    :icon => 'photo' %></li>
+  <li><%= link_active admins_tickets_path, 'Tickets', :ctrl => 'tickets',    :icon => 'photo' %></li>
+  <li><a href="#"><i class="material-icons left">settings</i> Settings</a></li>
+</ul>
+<script>
+  $(document).ready(function() {
+    $('.page-dropdown').click(function() {
+      $('.page').toggle();
+    });
+  });
+</script>

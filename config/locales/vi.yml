@@ -1,0 +1,55 @@
+vi:
+  login:
+    title: Đăng Nhập
+    user_name: Tài khoản
+    password: Mật khẩu
+    login: Đăng nhập
+  register:
+    title: Đăng Ký
+    user_name: Tài khoản
+    email: Email
+    register: Đăng Ký
+    notice: "Mật khẩu sẽ được gửi đến email của bạn."
+  header:
+    user:
+      login: Đăng nhập
+      register: Đăng ký
+    nav:
+      home: Trang chủ
+      about_us: Về chúng tôi
+      reward: Giải thưởng
+      booking: Booking
+      new: Tin tức
+      gallery: Thư viện ảnh
+      service: Dịch vụ
+      contact_us: Liên hệ
+  main:
+    detail: Chi tiết
+    reward: GIẢI THƯỞNG
+    service: DỊCH VỤ
+  contact:
+    title: Liên Hệ
+    full_name: Họ tên
+    address: Địa chỉ
+    phone_number: Số điện thoại
+    email: Email
+    subject: Tiêu đề
+    content: Nội dung
+    send: Gửi
+  about:
+    title: Về Indochine Palace
+  reward:
+    title: Giải thưởng của chúng tôi
+  new:
+    title: Tin tức
+  gallery:
+    title: Thư viện ảnh
+  service:
+    title: Dịch vụ của chúng tôi
+  booking:
+    title: Booking
+    alert:
+      check_in: Vui lòng chọn ngày Check in
+      check_out: Vui lòng chọn ngày Check out
+      adult: Vui lòng chọn số khách là người lớn
+      children: Vui lòng chọn số khách là trẻ em

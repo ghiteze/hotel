@@ -1,0 +1,2 @@
+Ckrequire "ckeditor/orm/active_recordeditor.setup do |config|
+  

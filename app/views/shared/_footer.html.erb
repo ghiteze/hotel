@@ -1,0 +1,46 @@
+<footer id="footer" class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l5">
+        <%= link_to image_tag("logo.png"), root_path %>
+        <p>105A Hung Vuong street, Hue city, Vietnam</p>
+        <p>+84 (0)54 393 6666 - F : +84 (0)54 393 6555</p>
+        <p>info@bwp-indochinepalace.com</p>
+        <p>www.bwp-indochinepalace.com</p>
+      </div>
+      <div class="col s12 m12 l7 hide-on-med-and-down">
+        <div class="row">
+          <div class="col s8 m8 l8 new-footer">
+            <h2>News</h2>
+            <ul>
+              <% @news.each do |new| %>
+                <li>
+                  <%= link_to (image_tag new.image), "#" %>
+                  <%= link_to new.name, new_path(new.slug) %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="col s4 m4 l4 service-footer">
+            <h2>Our Services</h2>
+            <ul>
+              <li><a href="#">Accommodation</a></li>
+              <li><a href="#">Restaurant</a></li>
+              <li><a href="#">Spa & Wellness</a></li>
+              <li><a href="#">Gym & Fitness</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      Copyright © <%= Time.zone.now.year %> BW Premier Indochine Palace
+    </div>
+  </div>
+</footer>
+<% if current_user.nil? %>
+  <%= render 'shared/login' %>
+  <%= render 'shared/register' %>
+<% end %>

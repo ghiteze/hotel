@@ -1,0 +1,55 @@
+en:
+  login:
+    title: Login Form
+    user_name: Username
+    password: Password
+    login: Login
+  register:
+    title: Register Form
+    user_name: Username
+    email: Email
+    register: Register
+    notice: "A password will be e-mailed to you."
+  header:
+    user:
+      login: Login
+      register: Register
+    nav:
+      home: Home
+      about_us: About us
+      reward: Rewards
+      booking: Booking
+      new: News
+      gallery: Gallery
+      service: Services
+      contact_us: Contact us
+  main:
+    detail: Details
+    reward: REWARDS
+    service: SERVICES
+  contact:
+    title: Contact Us
+    full_name: Full name
+    address: Address
+    phone_number: Phone number
+    email: Email
+    subject: Subject
+    content: Content
+    send: Send
+  about:
+    title: About Indochine Palace
+  reward:
+    title: Our Rewards
+  new:
+    title: News
+  gallery:
+    title: Gallery
+  service:
+    title: Our Services
+  booking:
+    title: Booking
+    alert:
+      check_in: Please fill both Check in dates
+      check_out: Please fill both Check out dates
+      adult: Please add how many adult guest
+      children: Please add how many children guest

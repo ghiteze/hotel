@@ -1,0 +1,12 @@
+<div id="register-modal" class="modal">
+  <%= form_for @user, :url => user_registration_path, method: :post do |f| %>
+    <div class="modal-content center-align">
+      <h1 class="title center-align"><span><%= t('register.title') %></span></h1>
+      <%= f.email_field :email, :placeholder => t('register.email') %>
+      <i><%= t('register.notice') %></i>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action modal-close btn"><%= t('register.register') %></button>
+    </div>
+  <% end %>
+</div>

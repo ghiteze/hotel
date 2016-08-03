@@ -1,0 +1,85 @@
+<h2 class="title center-align"><span>Booking Summary</span></h2>
+<p class="center-align" style="width:80%;color:#999;margin:0 auto 30px auto;">This section is provided to add some description and instruction about booking process to help users to book their rooms based on their needs. Also you can add some description about your hotel's rooms of booking.</p>
+<div class="box">
+  <div class="row">
+    <div class="col s12 m12 l4">
+      <span>Check in:</span><span class="right"><%= check_in %></span><br/>
+      <span>Check out:</span><span class="right"><%= check_out %></span><br/>
+      <span>Adult:</span><span class="right"><%= adult %></span><br/>
+      <span>Children:</span><span class="right"><%= children %></span><br/>
+    </div>
+    <div class="col s12 m12 l4">
+      <%= accommodation %>
+    </div>
+    <div class="col s12 m12 l4 center-align"><span><%= "$#{total_price}" %></span></div>
+  </div>
+</div>
+
+<h2 class="title center-align"><span>Guests Information</span></h2>
+<form action="/booking/guest_info" method="POST">
+  <div class="row">
+    <% if current_user.present? %>
+      <div class="col s12">
+        <input type="checkbox" class="filled-in" id="filled-in-box">
+        <label for="filled-in-box">Use information from your account</label>
+      </div>
+    <% end %>
+    <div class="col s12 m6 l4">
+      <input type="text" placeholder="First name" name="booking[first_name]" value="<%= customer.first_name if customer.present? %>">
+    </div>
+    <div class="col s12 m6 l4">
+      <input type="text" placeholder="Last name" name="booking[last_name]" value="<%= customer.last_name if customer.present? %>">
+    </div>
+    <div class="col s12 m6 l4">
+      <input type="email" placeholder="Email" name="booking[email]" value="<%= customer.email if customer.present? %>">
+    </div>
+    <div class="col s12 m6 l4">
+      <input type="text" placeholder="Phone number" name="booking[phone_number]" value="<%= customer.phone_number if customer.present? %>">
+    </div>
+    <div class="col s12 m6 l4">
+      <input type="text" placeholder="City" name="booking[city]" value="<%= customer.city if customer.present? %>">
+    </div>
+    <div class="col s12 m6 l4">
+      <input type="text" placeholder="Address" name="booking[address]" value="<%= customer.address if customer.present? %>">
+    </div>
+    <div class="col s12 m12 ls12">
+      <textarea placeholder="Special requirements" name="booking[special_requirements]"><%= customer.special_requirements if customer.present? %></textarea>
+    </div>
+    <div class="col s12 center-align">
+      <button class="btn">Submit</button>
+    </div>
+  </div>
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="e9NDAbvD8wv41sl6/e+dPp47UvuF5kYJQJiW5GpGYi11AQm8QZX6HgHUSaI0QhS17F3u0AqGTASjLL1KcETsig==">
+</form>
+<script>
+  $(document).ready(function() {
+    $('#filled-in-box').on('change', function() {
+      if ($(this).prop('checked')) {
+        set_info();
+      }
+    });
+
+    var get_info = function() {
+      return {
+        first_name  : '<%= current_user.first_name if current_user.present? %>',
+        last_name   : '<%= current_user.last_name if current_user.present? %>',
+        email       : '<%= current_user.email if current_user.present? %>',
+        phone_number: '<%= current_user.phone_number if current_user.present? %>',
+        city        : '<%= current_user.city if current_user.present? %>',
+        address     : '<%= current_user.address if current_user.present? %>'
+      };
+    };
+
+    var set_info = function() {
+      var info = get_info();
+      $('[name="booking[first_name]"]').val(info.first_name);
+      $('[name="booking[last_name]"]').val(info.last_name);
+      $('[name="booking[email]"]').val(info.email);
+      $('[name="booking[phone_number]"]').val(info.phone_number);
+      $('[name="booking[city]"]').val(info.city);
+      $('[name="booking[address]"]').val(info.address);
+    };
+
+  });
+</script>

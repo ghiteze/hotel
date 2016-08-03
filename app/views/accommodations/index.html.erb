@@ -1,0 +1,21 @@
+<div id="accommodation-page" class="service-page">
+  <div class="container">
+    <h1 class="big-title">Accommodation</h1>
+    <p>These are designed with the Indochine opulence and inspired by the subdued elegance of a Noble House. They boast spacious and luxurious Floor Lounges.</p>
+    <p>This arrangement facilitates every guestroom with its own extended living room where guests can entertain their visitors or where groups of friends or families could meet, socialize and enjoy each other’s company amidst a cosy and comfortable, yet private ambience.</p><br/>
+    <div class="row">
+      <% @accommodations.each do |accommodation| %>
+        <div class="col s6 m6 l4 hover-effect" style="margin-bottom: 0.75em;">
+          <div class="image">
+            <%= image_tag accommodation.accommodation_images.first.image.url, :class =>'responsive-img' %>
+          </div>
+          <div class="text">
+            <h2><%= link_to accommodation.name.upcase, accommodation_path(accommodation.slug) %></h2>
+            <p class="price"><%= "$ #{accommodation.price}" %><i> per night</i></p>
+            <%= link_to "", accommodation_path(accommodation.slug), :class => "read-more" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

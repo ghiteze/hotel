@@ -1,0 +1,18 @@
+<div class="accommodation-content">
+  <div class="container">
+    <h1 class="big-title"><%= @accommodation.name %></h1>
+    <div class="row">
+      <div class="col s12 m12 l8">
+        <p><strong>Room type: </strong><%= @accommodation.kind %></p>
+        <p><strong>Room size: </strong><%= "#{@accommodation.size} sqm (#{@accommodation.number} Rooms)" %></p>
+        <p><strong>Rates: </strong>$ <%= @accommodation.price %></p>
+        <%= @accommodation.content.html_safe %>
+      </div>
+      <div class="col s12 m12 l4">
+        <% @accommodation.accommodation_images.each do |img| %>
+          <%= image_tag img.image.url(:normal), :width => "350", :class => "materialboxed right" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

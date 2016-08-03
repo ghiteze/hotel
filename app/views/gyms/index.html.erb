@@ -1,0 +1,25 @@
+<div id="gym-page" class="service-page">
+  <div class="container">
+    <h1 class="big-title">Gym & Fitness</h1>
+    <p>The whole Ground floor of the hotel is dedicated to relaxation and stylish recreation. Besides our bar ‘Les Bains’ there is a pool lounge leading to a large-size pool and a sandtone-surfaced sub desk cooled by Royal Palm Trees leading to the Cabana Day gyms. An expanse of grass lawns that is somewhat unique for a hotel that is in the center of a city completes your relaxation and self-recreation.</p><br/>
+
+      <div class="row">
+        <% @gyms.each do |gym| %>
+
+          <div class="col s12 m12 l4 hover-effect">
+
+            <div class="image"><%= image_tag gym.image.url, :class =>'responsive-img' %></div>
+
+            <div class="text">
+              <h2><%= link_to gym.name.upcase, gym_path(gym.slug) %></h2>
+              <p><%= gym.price %></p>
+              <%= link_to "",gym_path(gym.slug), :class => 'read-more' %>
+            </div>
+
+          </div>
+
+        <% end %>
+      </div>
+
+  </div>
+</div>

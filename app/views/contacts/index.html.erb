@@ -1,0 +1,75 @@
+<div id="contact-page">
+  <div class="container">
+    <h1 class="big-title"><%= t('contact.title') %></h1>
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <ul>
+          <li>
+            <strong>BW Premier Indochine Palace</strong>
+            <ul>
+              <li><span>Address</span><span>: 105A Hung Vuong street, Hue city, Vietnam.</span></li>
+              <li><span>Tel</span><span>: +84 (0) 54 393 6666</span></li>
+              <li><span>Fax</span><span>: +84 (0) 54 393 6555</span></li>
+              <li><span>Email</span><span>: info@bwp-indochinepalace.com</span></li>
+              <li><span>Website</span><span>: www.bwp-indochinepalace.com</span></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Sales Office in Ha Noi city</strong>
+            <ul>
+              <li><span>Address</span>: Room 1301, 13th Floor, Dao Duy Anh Tower, 09 Dao Duy Anh Str., Dong Da Dist, Ha Noi, Vietnam.</li>
+              <li><span>Tel</span><span>: +84 (0) 4 3574 7771</span></li>
+              <li><span>Fax</span><span>: +84 (0) 4 3574 7772</span></li>
+              <li><span>Email</span><span>: sm-hn@bwp-indochinepalace.com</span></li>
+              <li><span>Website</span><span>: www.bwp-indochinepalace.com</span></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Sales Office in Ho Chi Minh city</strong>
+            <ul>
+              <li><span>Address</span>: 13th Floor, Hoang Long building, 244 Cong Quynh street, Pham Ngu Lao ward, District 1, HCM.</li>
+              <li><span>Tel</span><span>: +84 (0) 8 3925 3019</span></li>
+              <li><span>Fax</span><span>: +84 (0) 8 3925 3122</span></li>
+              <li><span>Email</span><span>: sm-hcm@bwp-indochinepalace.com</span></li>
+              <li><span>Website</span><span>: www.bwp-indochinepalace.com</span></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Other Contacts</strong>
+            <ul>
+              <li><span>Reservation</span><span>: rsvn@bwp-indochinepalace.com</span></li>
+              <li><span>Sales Manager</span><span>: sales@bwp-indochinepalace.com</span></li>
+              <li><span>Food & Beverage Manager</span><span>: fbm@bwp-indochinepalace.com</span></li>
+              <li><span>General Manager</span><span>: gm@bwp-indochinepalace.com</span></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="col s12 m12 l6">
+        <div class="row" style="margin-right: 0;">
+          <%= form_for @contact do |f| %>
+            <div class="input-field col s12 m6 l6">
+              <%= f.text_field :full_name, :placeholder => "#{t('contact.full_name')} *" %>
+            </div>
+            <div class="input-field col s12 m6 l6">
+              <%= f.text_field :address, :placeholder => t('contact.address') %>
+            </div>
+            <div class="input-field col s12 m6 l6">
+              <%= f.text_field :phone_number, :placeholder => t('contact.phone_number') %>
+            </div>
+            <div class="input-field col s12 m6 l6">
+              <%= f.email_field :email, :placeholder => "#{t('contact.email')} *" %>
+            </div>
+            <div class="input-field col s12 m12 l12">
+              <%= f.text_field :subject, :placeholder => "#{t('contact.subject')} *" %>
+            </div>
+            <div class="input-field col s12 m12 l12">
+              <%= f.text_area :content, :placeholder => "#{t('contact.content')} *", :class => 'materialize-textarea' %>
+            </div>
+            <button class="btn right"><%= t('contact.send') %></button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

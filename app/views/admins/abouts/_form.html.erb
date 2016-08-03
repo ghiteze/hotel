@@ -1,0 +1,11 @@
+<div id="modal1" class="modal modal-fixed-footer">
+  <%= form_for [:admins, @about] do |f| %>
+    <div class="modal-content">
+      <%= f.cktext_area :content, :ckeditor => {:toolbar => 'mini', :height => 300} %>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action modal-close waves-effect waves-light btn green lighten-1"><i class="material-icons left">save</i> Save</button>
+      <a class="modal-action modal-close waves-effect waves-light btn red lighten-1"><i class="material-icons left">close</i> Cancel</a>
+    </div>
+  <% end %>
+</div>

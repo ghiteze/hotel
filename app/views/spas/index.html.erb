@@ -1,0 +1,19 @@
+<div id="spa-page" class="service-page">
+  <div class="container">
+    <h1 class="big-title">Spa & Wellness</h1>
+    <p>Bhuvana Spa assists you to enjoy a range of treatments inspired by nature to nurture the mind, body and spirit.</p>
+    <p>Bhuvana Spa has been created to enhance your health and well-being by embracing the powerful healing qualities of nature. Indulgent and nurturing, each signature therapy is a blend of dynamic ingredients, designed to balance the physical and emotional body. Bhuvana Spa uses the tropical Vietnamese fresh fruits and vegetables; these are hand selected from the local market in the early morning for natural facial and body treatments. When designing your own by choosing a combination of our treatments, you will emerge from the Bhuvana Spa Packages relaxed and rejuvenated.</p><br/>
+    <div class="row">
+      <% @spas.each do |spa| %>
+        <div class="col s12 m12 l4 hover-effect">
+          <%= image_tag(spa.image.url(:medium), :class =>'responsive-img') %>
+          <div class="text">
+            <h2><%= link_to spa.name.upcase, spa_path(spa.slug) %></h2>
+            <p>$<%= spa.price %><i> per 3 hours</i></p>
+            <%= link_to "", spa_path(spa.slug), :class => "read-more" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+﻿vi:
+  devise:
+    confirmations:
+      confirmed: "Địa chỉ email của bạn đã được xác nhận."
+      send_instructions: "Bạn sẽ nhận được một email hướng dẫn cách thức xác thực địa chỉ email trong ít phút nữa."
+      send_paranoid_instructions: "Nếu địa chỉ email của bạn đã tồn tại, hệ thống sẽ gửi một email hướng dẫn cách thức xác nhận địa chỉ email trong ít phút nữa."
+    failure:
+      already_authenticated: "Bạn đã đăng nhập."
+      inactive: "Tài khoản của bạn chưa được kích hoạt."
+      invalid: "Không hợp lệ %{authentication_keys} hoặc mật khẩu."
+      locked: "Tài khoản của bạn đã bị khóa."
+      last_attempt: "Bạn còn một lần thử đăng nhập nữa trước khi bị khóa tài khoản."
+      not_found_in_database: "Không hợp lệ %{authentication_keys} hoặc mật khẩu."
+      timeout: "Hết phiên làm việc. Đăng nhập để tiếp tục."
+      unauthenticated: "Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục."
+      unconfirmed: "Bạn phải xác nhận địa chỉ email trước khi tiếp tục."
+    mailer:
+      confirmation_instructions:
+        subject: "Hướng dẫn xác nhận"
+      reset_password_instructions:
+        subject: "Hướng dẫn kích hoạt lại mật khẩu"
+      unlock_instructions:
+        subject: "Hướng dẫn mở khóa."
+    omniauth_callbacks:
+      failure: "Không thể xác thực cho %{kind} bởi vì \"%{reason}\"."
+      success: "Xác thực thành công từ %{kind} tài khoản."
+    passwords:
+      no_token: "Bạn không thể truy cập nội dung này nếu không đến từ một email đặt lại mật khẩu. Nếu bạn đến từ một email đặt lại mật khẩu, xin hãy kiểm tra lại đường dẫn đã được cung cấp."
+      send_instructions: "Bạn sẽ nhận được một email hướng dẫn cách thức đặt lại mật khẩu trong ít phút nữa."
+      send_paranoid_instructions: "Nếu địa chỉ email của bạn đã tồn tại, hệ thống sẽ gửi một email chứa đường dẫn lấy lại mật khẩu trong ít phút nữa."
+      updated: "Mật khẩu của bạn đã được thay đổi. Đăng nhập thành công."
+      updated_not_active: "Mật khẩu của bạn đã được thay đổi thành công."
+    registrations:
+      destroyed: "Tạm biệt! Tài khoản của bạn đã được xóa. Hẹn gặp lại!"
+      signed_up: "Xin chào! Bạn đã đăng kí tài khoản thành công."
+      signed_up_but_inactive: "Bạn đã đăng kí tài khoản thành công. Tuy nhiên, chúng tôi chưa cho phép bạn đăng nhập trước khi tài khoản của bạn được kích hoạt."
+      signed_up_but_locked: "Bạn đã đăng kí tài khoản thành công. Tuy nhiên, chúng tôi chưa cho phép bạn đăng nhập vì tài khoản đã bị khóa."
+      signed_up_but_unconfirmed: "Một thông báo kèm đường dẫn xác nhận đã được gửi vào email của bạn. Xin hãy làm theo đường dẫn để kích hoạt tài khoản."
+      update_needs_confirmation: "Bạn đã cập nhật tài khoản thành công, Chúng  tôi cần xác thực địa chỉ email. Hãy kiểm tra email và làm theo đường dẫn xác nhận đẻ xác nhận tài khoản của bạn."
+      updated: "Tài khoản của bạn đã được cập nhật thành công."
+    sessions:
+      signed_in: "Đăng nhập thành công."
+      signed_out: "Đăng xuất thành công."
+      already_signed_out: "Đăng xuất thành công."
+    unlocks:
+      send_instructions: "Bạn sẽ nhận được một email hướng dẫn cách thức mở lại tài khoản trong ít phút nữa."
+      send_paranoid_instructions: "Nếu địa chỉ email của bạn đã tồn tại, hệ thống sẽ gửi một email chứa đường dẫn mở lại tài khoản trong ít phút nữa."
+      unlocked: "Tài khoản của bạn đã được mở lại. Xin đăng nhập để tiếp tục."
+  errors:
+    messages:
+      already_confirmed: "đã xác nhận. Xin đăng nhập."
+      confirmation_period_expired: "Cần được xác nhận trong khoảng %{period}, vui lòng đặt yêu cầu khác."
+      expired: "đã hết hạn, vui lòng đặt yêu cầu khác."
+      not_found: "không tìm thấy"
+      not_locked: "chưa được khóa"
+      not_saved:
+        one: "Một lỗi bị cấm  %{resource} từ việc lưu: "
+        other: "%{count} lỗi bị cấm %{resource} từ việc bị lưu:"

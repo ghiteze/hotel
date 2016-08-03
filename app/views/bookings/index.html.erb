@@ -1,0 +1,40 @@
+<div id="booking-page">
+  <div class="container">
+    <h1 class="big-title">Booking</h1>
+    <div class="steps row">
+      <div class="col s12 m6 l3 step">
+        <a href="#step_1" class="step-wrap finish-step <%= booking.check_in ? "" : "active" %>"><i>1</i></a>
+        <p>Choose Your Date</p>
+      </div>
+      <div class="col s12 m6 l3 step">
+        <a href="#step_2" class="step-wrap <%= finish_step(2) %> <%= tab_active(2) %>"><i>2</i></a>
+        <p>Choose Your Room</p>
+      </div>
+      <div class="col s12 m6 l3 step">
+        <a href="#step_3" class="step-wrap <%= finish_step(3) %> <%= tab_active(3) %>"><i>3</i></a>
+        <p>Reservation</p>
+      </div>
+      <div class="col s12 m6 l3 step">
+        <a href="#step_4" class="step-wrap <%= finish_step(4) %> <%= tab_active(4) %>"><i>4</i></a>
+        <p>Confirmation</p>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="tabs-content">
+      <div id="step_1" class="tab <%= booking.check_in ? "" : "active" %>">
+        <%= render 'bookings/step_1' %>
+      </div>
+      <div id="step_2" class="tab <%= tab_active(2) %>">
+        <%= render 'bookings/step_2' if booking.step_2.present? %>
+      </div>
+      <div id="step_3" class="tab <%= tab_active(3) %>">
+        <%= render 'bookings/step_3' if booking.step_3.present? %>
+      </div>
+      <div id="step_4" class="tab <%= tab_active(4) %>">
+        <%= render 'bookings/step_4' if booking.step_4.present? %>
+      </div>
+    </div>
+  </div>
+</div>

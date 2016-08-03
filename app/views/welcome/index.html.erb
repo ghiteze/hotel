@@ -1,0 +1,133 @@
+<section id="slider" class="slider">
+  <ul class="slides">
+    <li><%= image_tag('slider1.jpg') %></li>
+    <li><%= image_tag('slider2.jpg') %></li>
+    <li><%= image_tag('slider3.jpg') %></li>
+    <li><%= image_tag('slider4.jpg') %></li>
+    <li><%= image_tag('slider5.jpg') %></li>
+    <li><%= image_tag('slider7.jpg') %></li>
+    <li><%= image_tag('slider8.jpg') %></li>
+    <li><%= image_tag('slider9.jpg') %></li>
+    <li><%= image_tag('slider10.jpg') %></li>
+  </ul>
+</section>
+<section id="booking">
+  <div class="container">
+    <form action="/booking/check_availability" method="POST" class="row">
+      <div class="col s6 m6 l3">
+        <i class="material-icons right">event_note</i>
+        <input type="date" class="checkin" name="booking[check-in]" placeholder="Check-In">
+      </div>
+      <div class="col s6 m6 l3">
+        <i class="material-icons right">event_note</i>
+        <input type="date" class="checkout" name="booking[check-out]" placeholder="Check-Out">
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="select-wrap">
+          <i class="material-icons right">expand_more</i>
+          <select class="adult none" name="booking[adult]">
+            <option value="" disabled selected>Adult</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="select-wrap">
+          <i class="material-icons right">expand_more</i>
+          <select class="children none" name="booking[children]">
+            <option value="" disabled selected>Children</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="book-now"><span>Book Now</span></button>
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="authenticity_token" value="e9NDAbvD8wv41sl6/e+dPp47UvuF5kYJQJiW5GpGYi11AQm8QZX6HgHUSaI0QhS17F3u0AqGTASjLL1KcETsig==">
+    </form>
+  </div>
+</section>
+<section id="intro">
+  <div class="container">
+    <h2 class="title center-align"><span>BW PREMIER INDOCHINE PALACE</span></h2>
+    <%= @introduction.content.html_safe %>
+  </div>
+</section>
+<!--
+<section id="reward">
+  <div class="container">
+    <h2 class="title center-align"><span><%= t('main.reward') %></span></h2>
+  </div>
+</section>
+-->
+<section id="service">
+  <div class="container">
+    <h2 class="title center-align"><span><%= t('main.service') %></span></h2>
+    <div class="row">
+      <div class="col s6 m6 l3">
+        <div class="service">
+          <%= link_to image_tag("room.jpg"), accommodations_path %>
+          <div class="text">
+            <h2><%= link_to "Accommodation", accommodations_path %></h2>
+            <p>These are designed with the Indochine opulence and inspired by the subdued elegance of a Noble House ...</p>
+            <%= link_to t('main.detail'), accommodations_path, :class => "btn" %>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="service">
+          <%= link_to image_tag("restaurant.jpg"), restaurants_path %>
+          <div class="text">
+            <h2><%= link_to "Restaurant", restaurants_path %></h2>
+            <p>The Food and Beverage (F&B) facilities and services are the key to the success of the Hotel and have to support the ...</p>
+            <%= link_to t('main.detail'), restaurants_path, :class => "btn" %>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="service">
+          <%= link_to image_tag("spa.png"), spas_path %>
+          <div class="text">
+            <h2><%= link_to "Spa & Wellness", spas_path %></h2>
+            <p>Bhuvana Spa assists you to enjoy a range of treatments inspired by nature to nurture the mind, body and spirit ...</p>
+            <%= link_to t('main.detail'), spas_path, :class => "btn" %>
+          </div>
+        </div>
+      </div>
+      <div class="col s6 m6 l3">
+        <div class="service">
+          <%= link_to image_tag("gym.jpg"), gyms_path %>
+          <div class="text">
+            <h2><%= link_to "Gym & Fitness", gyms_path %></h2>
+            <p>The whole Ground floor of the hotel is dedicated to relaxation and stylish recreation. Besides our bar ‘Les Bains’ ...</p>
+            <%= link_to t('main.detail'), gyms_path, :class => "btn" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+$(document).ready(function() {
+  $('#intro, #service').addClass('hidden').viewportChecker({
+    classToAdd: 'visible animated fadeInDown',
+    offset: 150
+  });
+});
+</script>

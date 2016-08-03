@@ -1,0 +1,33 @@
+<div id="user-login-page">
+  <div class="container">
+    <h1 class="big-title">User Login</h1>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="input-field">
+        <%= f.email_field :email, :id => 'email' %>
+        <%= f.label :email, :for => 'email' %><br />
+      </div>
+
+      <div class="input-field">
+        <%= f.password_field :password, :id => 'password', :autocomplete => "off" %>
+        <%= f.label :password, :for => 'password' %><br />
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="input-field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="input-field">
+        <%= f.submit "Log in", :class => 'btn' %>
+      </div>
+
+      <%= render "users/shared/links" %>
+    <% end %>
+
+    
+  </div>
+</div>

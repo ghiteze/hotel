@@ -1,0 +1,12 @@
+<div id="gallery-page">
+  <div class="container">
+    <h1 class="big-title"><%= t('gallery.title') %></h1>
+    <div class="row" style="margin: 0;">
+      <% @galleries.each do |gallery| %>
+        <div class="col s6 m6 l2" style="padding: 0 3px">
+          <%= image_tag gallery.image.url, :class => 'responsive-img materialboxed' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

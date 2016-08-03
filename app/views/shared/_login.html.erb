@@ -1,0 +1,12 @@
+<div id="login-modal" class="modal">
+  <%= form_for @user, :url => user_session_path, method: :post do |f| %>
+    <div class="modal-content">
+      <h1 class="title center-align"><span><%= t('login.title') %></span></h1>
+      <%= f.text_field :email, :placeholder => "Email" %>
+      <%= f.password_field :password, :placeholder => t('login.password') %>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="modal-action modal-close btn"><%= t('login.login') %></button>
+    </div>
+  <% end %>
+</div>

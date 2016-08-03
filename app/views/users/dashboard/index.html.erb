@@ -1,0 +1,39 @@
+<div id="user-page">
+  <div class="container">
+    <h1 class="big-title">User Manager</h1>
+    <div class="row">
+      <div class="col s12">
+        <span><a href="#information" class="active">Information</a></span>
+        <span><a href="#transaction">Transaction</a></span>
+      </div>
+      
+      <div class="tabs-content">
+        <div id="information" class="tab active">
+          <%= render 'users/dashboard/information' %>
+        </div>
+        <div id="transaction" class="tab">
+          <%= render 'users/dashboard/transaction' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  var $act =  $('span>a').on('click', function(e)  {
+    var attr = $(this).attr('href');
+
+    $(attr).fadeIn(600)
+           .siblings()
+           .hide();
+
+    $(this).addClass('active');
+
+    $act.not(this)
+        .removeClass('active');
+
+    e.preventDefault();
+  });
+});
+</script>

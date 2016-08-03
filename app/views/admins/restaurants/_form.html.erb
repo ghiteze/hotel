@@ -1,0 +1,145 @@
+<form id="image_upload_form" action="/admins/restaurants/" method="POST" enctype="multipart/form-data">
+
+  <div class="input-field">
+    <% if @restaurant.restaurant_images.present? %>
+      <% @restaurant.restaurant_images.each do |x| %>
+        <div class="image" data-id="<%= x.id %>">
+          <%= image_tag x.image.url(:medium), :class => 'responsive-img' %>
+          <a href="#" class="remove"><i class="material-icons">close</i></a>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div id="image_preview"></div>
+
+    <div class="image add">
+      <label for="file_upload" class="valign-wrapper"><i class="material-icons">add</i></label>
+      <%= file_field_tag "images[]", :multiple => true, :id => 'file_upload' %>
+    </div>
+  </div>
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="authenticity_token" value="4F90bhEgHa8Xjpu92WCBCBI+TQIinYSkND+2favmrYcw4YrBmHfHBIYtfM12NRdsMXcI2iv8OmdPene4GwW1pQ==">
+</form>
+
+<%= form_for [:admins, @restaurant], :html => {multipart: true} do |f| %>
+  <div class="input-field">
+    <%= f.text_field :name, :id => 'name' %>
+    <%= f.label 'Name', :for => 'name' %>
+  </div>
+
+  <div class="input-field">
+    <%= f.text_field :slug, :id => 'slug' %>
+    <%= f.label 'Slug', :for => 'slug' %>
+  </div>
+
+  <%= f.cktext_area :content, :ckeditor => {:toolbar => 'mini', :height => 300} %>
+
+  <%= f.button :class => "waves-effect waves-light btn teal" do %>
+  <i class="material-icons left">save</i> Save
+  <% end %>
+  
+<% end %>
+
+<script>
+  $(document).ready(function(e) {
+
+    // insert
+    $(document).on('submit', '#image_upload_form', function(e) {
+      e.preventDefault();
+      var $data = new FormData(this);
+      var $url  = '/admins/restaurants/create_image';
+
+      $.ajax({
+        type: 'POST',
+        url: $url,
+        data: $data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var $length = data.length;
+          var $path   = 'http://localhost:3000/system/restaurant_images/images/000/000';
+          var $html = '';
+          for (var i = 0; i < $length; i++) {
+            $html += '<div class="image" data-id="' + data[i].id + '">';
+            $html += '<img src="' + $path + '/' + cover_number(data[i].id) + '/medium' + '/' + data[i].image_file_name + '" class="responsive-img"/>';
+            $html += '<a href="#" class="update"><i class="material-icons">mode_edit</i></a>';
+            $html += '<a href="#" class="remove"><i class="material-icons">close</i></a>';
+            $html += '</div>';
+          }
+          $('#image_preview').html($html);
+        },
+        error: function (data) {
+          console.log("Error");
+        }
+      });
+    });
+
+    $(document).on('change', '#file_upload', function () {
+      $('#image_upload_form').submit();
+    });
+
+
+    // remove
+    $(document).on('click', '.remove', function(e) {
+      e.preventDefault();
+      var $this = $(this);
+      var $id = $this.parent('div').data('id');
+      var $data = {
+        _method: 'delete',
+        authenticity_token: '4F90bhEgHa8Xjpu92WCBCBI+TQIinYSkND+2favmrYcw4YrBmHfHBIYtfM12NRdsMXcI2iv8OmdPene4GwW1pQ=='
+      }
+      $.ajax({
+        type: 'POST',
+        url: '/admins/restaurants/destroy_image/' + $id,
+        data: $data,
+        success: function(data) {
+          $this.parent('div').remove();
+        }
+      });
+    });
+
+  });
+
+  function cover_number(number) {
+    var str = "" + number;
+    var pad = "000";
+    return pad.substring(0, pad.length - str.length) + str;
+  }
+</script>
+
+
+<script>
+/*
+window.onload = function () {
+    var fileUpload = document.getElementById("file-input");
+    fileUpload.onchange = function () {
+        if (typeof (FileReader) != "undefined") {
+            var dvPreview = document.getElementById("image-preview");
+            dvPreview.innerHTML = "wer";
+            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            for (var i = 0; i < fileUpload.files.length; i++) {
+                var file = fileUpload.files[i];
+                if (regex.test(file.name.toLowerCase())) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = document.createElement("IMG");
+                        img.width = "200";
+                        img.height = "120";
+                        img.src = e.target.result;
+                        dvPreview.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    alert(file.name + " is not a valid image file.");
+                    dvPreview.innerHTML = "";
+                    return false;
+                }
+            }
+        } else {
+            alert("This browser does not support HTML5 FileReader.");
+        }
+    }
+};
+*/
+</script>

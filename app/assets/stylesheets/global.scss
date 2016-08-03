@@ -1,0 +1,96 @@
+$color3: #b19261;
+@mixin box-sizing() {
+  -webkit-box-sizing : border-box;
+  -moz-box-sizing    : border-box;
+  -o-box-sizing      : border-box;
+  -ms-box-sizing     : border-box;
+  box-sizing         : border-box;
+}
+
+@mixin input-style($color) {
+  input[type=text]:focus:not([readonly]),
+  input[type=password]:focus:not([readonly]),
+  input[type=email]:focus:not([readonly]),
+  input[type=url]:focus:not([readonly]),
+  input[type=time]:focus:not([readonly]),
+  input[type=date]:focus:not([readonly]),
+  input[type=datetime-local]:focus:not([readonly]),
+  input[type=tel]:focus:not([readonly]),
+  input[type=number]:focus:not([readonly]),
+  input[type=search]:focus:not([readonly]),
+  textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid $color;
+    box-shadow: 0 1px 0 0 $color;
+  }
+}
+
+@mixin transition($property, $duration) {
+  -webkit-transition : $property $duration;
+  -moz-transition    : $property $duration;
+  -o-transition      : $property $duration;
+  -ms-transition     : $property $duration;
+  transition         : $property $duration;
+}
+
+@mixin transform-rotate($deg) {
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+
+@mixin placeholder-color($color) {
+  ::-webkit-input-placeholder {
+    color: $color !important;
+  }
+  :-moz-placeholder {
+    color: $color !important;
+    opacity:  1;
+  }
+  ::-moz-placeholder {
+    color: $color !important;
+    opacity:  1;
+  }
+  :-ms-input-placeholder {
+    color: $color !important;
+  }
+}
+
+.modal,
+.btn { border-radius: 0 !important; }
+.block { display: block !important; }
+.inline-block { display: inline-block !important; }
+.none { display: none !important;}
+
+.message {
+  position: fixed;
+  bottom: -100px;
+  left: 30px;
+  z-index: 9999;
+  width: 300px;
+  height: auto;
+  min-height: 80px;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px;
+  @include box-sizing();
+  -webkit-animation-name: message;
+  -moz-animation-name: message;
+  animation-name: message;
+  -webkit-animation-duration: 5s;
+  -moz-animation-duration: 5s;
+  animation-duration: 5s;
+  span { color: $color3; }
+}
+@-webkit-keyframes message {
+  0% { bottom: 100px; background-color: rgba(0, 0, 0, 0); }
+  25% { bottom: 30px; background-color: rgba(0, 0, 0, 0.97); }
+  75% { bottom: 30px; background-color: rgba(0, 0, 0, 0.97); }
+  100% { bottom: -100px; background-color: rgba(0, 0, 0, 0); }
+}
+@keyframes message {
+  0% { bottom: 100px; background-color: rgba(0, 0, 0, 0); }
+  25% { bottom: 30px; background-color: rgba(0, 0, 0, 0.97); }
+  75% { bottom: 30px; background-color: rgba(0, 0, 0, 0.97); }
+  100% { bottom: -100px; background-color: rgba(0, 0, 0, 0); }
+}

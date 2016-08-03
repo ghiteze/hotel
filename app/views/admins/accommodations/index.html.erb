@@ -1,0 +1,30 @@
+<div class="web-location">
+  <h1><%= @web_location %></h1>
+  <%= link_to "Add new", new_admins_accommodation_path, :class => "waves-effect waves-light btn right" %>
+</div>
+<div class="main-content">
+  <div id="admin-accommodation">
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @accommodations.each do |accommodation| %>
+        <tr>
+          <td><%= image_tag accommodation.accommodation_images.first.image.url(:medium), :width => "100" %></td>
+          <td><%= link_to accommodation.name, accommodation_path(accommodation.slug), :target => "_blank" %></td>
+          <td>
+            <%= link_to "View", accommodation_path(accommodation.slug), :target => "_blank" %>
+            <%= link_to "Edit", edit_admins_accommodation_path(accommodation) %>
+            <%= link_to "Delete", admins_accommodation_path(accommodation), method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

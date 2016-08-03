@@ -1,0 +1,175 @@
+<div id="user-transaction-page">
+  <div class="container">
+    <h1 class="big-title">User Transaction</h1>
+    <% if @line_bookable_type == 'Room' %>
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Accommodation Name</th>
+            <th>Price</th>
+            <th>Check in</th>
+            <th>Check out</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">Services prices result</td>
+            <td>
+              $<%= tran_price(@bookings) %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">VAT(10%)</td>
+            <td>
+              $<%= tran_price(@bookings)/10 %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">Total</td>
+            <td>
+              $<%= tran_price(@bookings) + tran_price(@bookings)/10 %>
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% @bookings.each_with_index do |booking, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= link_to tran(booking).name, accommodation_path(tran(booking).slug), :target => "_blank" %></td>
+              <td>$<%= tran(booking).price %></td>
+              <td><%= tran(booking).check_in %></td>
+              <td><%= tran(booking).check_out %></td>
+              <td>$<%= tran(booking).total_price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% elsif @line_bookable_type == 'SpaBooking' %>
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Spa Name</th>
+            <th>Price</th>
+            <th>Package</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">Services prices result</td>
+            <td>
+              <% price = 0 %>
+              <% @bookings.each {|booking| price += (booking.spa.price*booking.package)} %>
+              <%= number_to_currency(price) %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">VAT(10%)</td>
+            <td>
+              <% vat = 0 %>
+              <% @bookings.each {|booking| vat += (booking.spa.price*booking.package)/10} %>
+              <%= number_to_currency(vat) %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">Total</td>
+            <td>
+              <%= number_to_currency(vat + price) %>
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% @bookings.each_with_index do |booking, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= link_to booking.spa.name, spa_path(booking.spa.slug), :target => '_blank' %></td>
+              <td><%= number_to_currency(booking.spa.price) %></td>
+              <td><%= booking.package %></td>
+              <td><%= number_to_currency(booking.spa.price*booking.package) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% elsif @line_bookable_type == 'GymBooking' %>
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Gym Name</th>
+            <th>Price</th>
+            <th>Package</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">Services prices result</td>
+            <td>
+              <% price = 0 %>
+              <% @bookings.each {|booking| price += (booking.gym.price*booking.package)} %>
+              <%= number_to_currency(price) %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">VAT(10%)</td>
+            <td>
+              <% vat = 0 %>
+              <% @bookings.each {|booking| vat += (booking.gym.price*booking.package)/10} %>
+              <%= number_to_currency(vat) %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-align">Total</td>
+            <td>
+              <%= number_to_currency(vat + price) %>
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% @bookings.each_with_index do |booking, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= link_to booking.gym.name, gym_path(booking.gym.slug), :target => '_blank' %></td>
+              <td><%= number_to_currency(booking.gym.price) %></td>
+              <td><%= booking.package %> Month(s)</td>
+              <td><%= number_to_currency(gym_with_price_package(booking)) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

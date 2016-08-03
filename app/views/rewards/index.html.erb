@@ -1,0 +1,19 @@
+<div id="reward-page">
+  <div class="container">
+    <h1 class="big-title"><%= t('reward.title') %></h1>
+    <div class="row">
+      <% @rewards.each do |reward| %>
+        <div class="col s12 m6 l6">
+          <div class="image">
+            <%= link_to image_tag(reward.image.url(:medium)), reward_path(reward.slug) %>
+          </div>
+          <div class="text">
+            <h2><%= link_to reward.title, reward_path(reward.slug) %></h2>
+            <p><i class="material-icons left">access_time</i><i><%= reward.created_at.strftime("%d/%m/%Y") %></i></p>
+            <p><%= reward.summary %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

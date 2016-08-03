@@ -1,0 +1,7 @@
+<div class="reward-content">
+  <div class="container ">
+    <h1 class="big-title"><%= @reward.title %></h1>
+    <p><%= @reward.created_at.strftime("%d/%m/%Y") %></p>
+    <%= @reward.content.html_safe %>
+  </div>
+</div>
